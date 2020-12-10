@@ -1,0 +1,133 @@
+<div id="howManyTrips">
+  <div id="booked" [ngStyle]="{'background-color': howManyTrips>=10 ? '#4f9351' : '#ff6666' }">
+    <span id="tripsy">
+      How many trips did you book: {{howManyTrips}}
+    </span>
+  </div>
+  <div class="filterEl">
+    End date:
+    <div class="dropdown">
+    <div class="btn-group">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+      </button>
+      <ul  class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <li *ngFor="let x of uniqueArrOfEndDate" class="list-group-item" style="width: auto;">
+          <input class="form-check-input me-1" type="checkbox" (click)="addTOuniqueArrOfEDate(x)"><br>
+          {{x}}
+        </li>
+      </ul>
+    </div>
+    </div>
+  </div>
+  <div class="filterEl">
+    Start date:
+    <div class="dropdown">
+    <div class="btn-group">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+      </button>
+      <ul  class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <li *ngFor="let x of uniqueArrOfStartDate" class="list-group-item">
+          <input class="form-check-input me-1" type="checkbox" (click)="addTOuniqueArrOfDate(x)"><br>
+          {{x}}
+        </li>
+      </ul>
+    </div>
+    </div>
+  </div>
+  <div class="filterEl">
+    Price:
+    <div class="dropdown">
+    <div class="btn-group">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+      </button>
+      <ul  class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <li *ngFor="let x of uniqueArrOfPrice" class="list-group-item">
+          <input class="form-check-input me-1" type="checkbox" (click)="addTOuniqueArrOfPrice(x)"><br>
+          {{x}}
+        </li>
+      </ul>
+    </div>
+    </div>
+  </div>
+  <div class="filterEl">
+    Country:
+    <div class="dropdown">
+    <div class="btn-group">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+      </button>
+      <ul  class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <li *ngFor="let x of uniqueArrOfCountry" class="list-group-item">
+          <span class="dropdown-item">
+          <input class="form-check-input me-1" type="checkbox" (click)="addTOuniqueArrOfCountry(x)"><br>
+          {{x}}
+            </span>
+        </li>
+      </ul>
+    </div>
+    </div>
+  </div>
+  <div class="filterEl">Select your trips:</div>
+
+</div>
+<div id="widmo"></div>
+<div id="gallery">
+<!--NIE ODPALA USUWANIA PO FILTROWANIU-->
+  <div class="card" *ngFor="let item of
+  ( getTripList() | getLocate :  chosenLoc | getPrice : chosenPrice | getStartDate : chosenDate | getEndDate : chosenEDate)"
+       [ngStyle]="getStyle(getIndex(item))">
+    <div class="imgDiv">
+      <div class="rateDiv">
+        <select [(ngModel)]="userRate[getIndex(item)]" (ngModelChange)="fun(getIndex(item))" [hidden]="whichRated[getIndex(item)] == 1" style="width: 30px; background-color: #ff6666; font-size: 20px; border: none; border-radius: 10px; text-decoration: none;">
+          <option class="rateScale" value="" selected disabled hidden>Rate here</option>
+          <option class="rateScale">1</option>
+          <option class="rateScale">2</option>
+          <option class="rateScale">3</option>
+          <option class="rateScale">4</option>
+          <option class="rateScale">5</option>
+        </select>
+        <span style="margin: 10px">{{getRate(getIndex(item)) | number : '1.2-2' }}</span>
+      </div>
+      <img src="{{item.imgURL}}">
+    </div>
+    <div>
+      <h2>{{ item.name | uppercase }}</h2>
+      <p>
+
+        {{item.description}}<br>
+
+        Country: {{item.aim | uppercase }} <br>
+        Price: {{item.price}} {{getCurrency(item.currency)}} <br>
+        Date: {{item.startTrip}} - {{item.endTrip}} <br>
+        <span *ngIf="item.maxSpace != 0" [ngStyle]="{'background-color': tripList[getIndex(item)].maxSpace <= 3 ? 'red' : ''}">Vacancies: {{item.maxSpace}}</span>
+        <span *ngIf="item.maxSpace == 0">Vacancies: there is no free spaces</span>
+      </p>
+      <hr>
+
+      <div class="read">
+        <button [ngStyle]="{'display': tripList[getIndex(item)].maxSpace == 0 ? 'none' : 'block' }" type="button" class="button" (click)="book(getIndex(item))" >Book</button>
+        <button [ngStyle]="{'display': tripList[getIndex(item)].maxSpace == (item.maxSpace+booking[getIndex(item)]) ? 'none' : 'block' }"  type="button" class="button1" (click)="cancel(getIndex(item))">Cancel reservations</button>
+        <button type="button" class="button1" (click)="delete(getIndex(item))">Delete trip</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="form">
+  <strong>Add your own trip here:</strong>
+  <form [formGroup]="modelForm" novalidate>
+    <label>Name of trip:</label><input name="nameOfTrip" formControlName="nameOfTrip" type="text"><br>
+
+    <label>Aim of trip:</label><input name="aimOfTrip" formControlName="aimOfTrip" type="text"><br>
+
+    <label>Description:</label><input name="descriptionOfTrip" formControlName="descriptionOfTrip" type="text"><br>
+
+    <label>Price:</label><input name="priceOfTrip" formControlName="priceOfTrip" type="number"><br>
+
+    <label>Start date:</label><input name="dateStartOfTrip" formControlName="dateStartOfTrip" type="date"><br>
+
+    <label>End date:</label><input name="dateEndOfTrip" formControlName="dateEndOfTrip" type="date"><br>
+
+    <label>Vacancies:</label><input name="vacanciesOfTrip" formControlName="vacanciesOfTrip" type="number"><br>
+
+    <button  type="submit" id="addButton" (click)="addTrip()" >Add</button>
+  </form>
+</div>

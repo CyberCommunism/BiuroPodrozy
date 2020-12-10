@@ -3,14 +3,27 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { TripComponent } from './trip/trip.component';
+
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { ShoppingComponent } from './shopping/shopping.component';
+import {SearchEndDate, SearchPipe, SearchPrice, SearchStartDate} from './filtre/filtre.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+    declarations: [
+        AppComponent,
+        TripComponent,
+        ShoppingComponent,
+        SearchPipe,
+        SearchStartDate,
+        SearchPrice,
+        SearchEndDate
+    ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

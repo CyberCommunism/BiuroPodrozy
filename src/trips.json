@@ -1,0 +1,99 @@
+[
+    {
+      "name": "Trip to Poland",
+      "aim": "Poland",
+      "startTrip": "22.11.2020",
+      "endTrip": "25.11.2020",
+      "price": 1300,
+      "currency": "USD",
+      "maxSpace": 20,
+      "description": "Want to go to Poland?",
+      "imgURL": "https://source.unsplash.com/1000x900/?poland",
+      "rate": [1,3,2]
+    },
+    {
+      "name": "Trip to France",
+      "aim": "France",
+      "startTrip": "20.11.2020",
+      "endTrip": "23.11.2020",
+      "price": 1300,
+      "currency": "PLN",
+      "maxSpace": 22,
+      "description": "Want to go to France?",
+      "imgURL": "https://source.unsplash.com/1000x900/?france",
+      "rate": [1,3,2]
+    },
+    {
+      "name": "Trip to Italy",
+      "aim": "Italy",
+      "startTrip": "15.11.2020",
+      "endTrip": "18.11.2020",
+      "price": 1000,
+      "currency": "EURO",
+      "maxSpace": 13,
+      "description": "Want to go to Italy?",
+      "imgURL": "https://source.unsplash.com/1000x900/?italy",
+      "rate": [1,3,2]
+    },
+    {
+      "name": "Trip to Hungary",
+      "aim": "Hungary",
+      "startTrip": "11.11.2020",
+      "endTrip": "14.11.2020",
+      "price": 2000,
+      "currency": "USD",
+      "maxSpace": 54,
+      "description": "Want to go to Hungary?",
+      "imgURL": "https://source.unsplash.com/1000x900/?hungary",
+      "rate": [1,3,2]
+    },
+    {
+      "name": "Trip to Japan",
+      "aim": "Japan",
+      "startTrip": "07.11.2020",
+      "endTrip": "10.11.2020",
+      "price": 1300,
+      "currency": "USD",
+      "maxSpace": 21,
+      "description": "Want to go to Japan?",
+      "imgURL": "https://source.unsplash.com/1000x900/?anime",
+      "rate": [1,3,2]
+    },
+    {
+      "name": "Trip to USA",
+      "aim": "USA",
+      "startTrip": "06.11.2020",
+      "endTrip": "09.11.2020",
+      "price": 1300,
+      "currency": "USD",
+      "maxSpace": 5,
+      "description": "Want to go to USA?",
+      "imgURL": "https://source.unsplash.com/1000x900/?usa",
+      "rate": [1,3,2]
+    },
+    {
+      "name": "Trip to Great Britain",
+      "aim": "Great Britain",
+      "startTrip": "02.11.2020",
+      "endTrip": "05.11.2020",
+      "price": 1300,
+      "currency": "USD",
+      "maxSpace": 13,
+      "description": "Want to go to Great Britain?",
+      "imgURL": "https://source.unsplash.com/1000x900/?england",
+      "rate": [1,3,2]
+    },
+    {
+      "name": "Trip to Russia",
+      "aim": "Russia",
+      "startTrip": "01.11.2020",
+      "endTrip": "04.11.2020",
+      "price": 1300,
+      "currency": "USD",
+      "maxSpace": 7,
+      "description": "Want to go to Russia?",
+      "imgURL": "https://source.unsplash.com/1000x900/?russia",
+      "rate": [1,3,2]
+    }
+]
+
