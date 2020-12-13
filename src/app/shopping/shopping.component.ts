@@ -1,35 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { AddToShoppingService } from '../add-to-shopping.service';
+import { tripObj } from '../trip/tripObj';
 @Component({
   selector: 'app-shopping',
   templateUrl: `./shopping.component.html`
 })
 export class ShoppingComponent implements OnInit {
   constructor(private data: AddToShoppingService) { }
-  // @ts-ignore
   sum = 0;
   sumArr = [];
-  // @ts-ignore
   howManyTrips = 0;
-  // @ts-ignore
-  // tslint:disable-next-line:ban-types
-  tripList: Array<{
-    name: string, aim: string,
-    startTrip: string, endTrip: string,
-    price: number, currency: string,
-    maxSpace: number, description: string,
-    imgURL: string, rate: Array<number>
-  }> = [];
+  tripList: Array<tripObj> = [];
   ngOnInit(): void {
     this.data.currentTripList.subscribe(y => {
-      // tslint:disable-next-line:triple-equals
-       if (typeof y != 'undefined'){
+       if (!(typeof y === 'undefined')){
          this.tripList = [];
          this.howManyTrips = 0;
          this.sum = 0;
          for (const t in y) {
-          // tslint:disable-next-line:triple-equals
-          if (typeof t != 'undefined') {
+          if (!(typeof t === 'undefined')) {
             const x = {
               name: y[t].name, aim: y[t].aim,
               startTrip: y[t].startTrip, endTrip: y[t].endTrip,
@@ -45,25 +34,11 @@ export class ShoppingComponent implements OnInit {
        }
     });
   }
-  // tslint:disable-next-line:typedef
-  isAlready(x: {
-    name: string, aim: string,
-    startTrip: string, endTrip: string,
-    price: number, currency: string,
-    maxSpace: number, description: string,
-    imgURL: string, rate: Array<number>
-  }){
+  isAlready(x: tripObj): boolean{
     let con = 0;
-    // tslint:disable-next-line:prefer-for-of
-    for (let i = 0 ; i < this.tripList.length ; i++){
-      if (this.tripList[i] === x){
-        con += 1;
-      }
+    for (const el of this.tripList){
+      if (el === x){ con += 1; }
     }
-    if (con >= 2){
-      return true;
-    }
-    return false;
+    return con >= 2;
   }
-
 }

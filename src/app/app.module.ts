@@ -8,6 +8,7 @@ import { TripComponent } from './trip/trip.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ShoppingComponent } from './shopping/shopping.component';
 import {SearchEndDate, SearchPipe, SearchPrice, SearchStartDate} from './filtre/filtre.component';
+import { FormComponent } from './trip/form/form.component';
 
 @NgModule({
     declarations: [
@@ -17,7 +18,8 @@ import {SearchEndDate, SearchPipe, SearchPrice, SearchStartDate} from './filtre/
         SearchPipe,
         SearchStartDate,
         SearchPrice,
-        SearchEndDate
+        SearchEndDate,
+        FormComponent
     ],
   imports: [
     BrowserModule,
