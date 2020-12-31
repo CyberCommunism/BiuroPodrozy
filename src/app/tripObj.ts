@@ -1,5 +1,6 @@
 // tslint:disable-next-line:class-name
 export interface tripObj {
+  key: string | undefined;
   name: string;
   aim: string;
   startTrip: string;
@@ -9,5 +10,6 @@ export interface tripObj {
   maxSpace: number;
   description: string;
   imgURL: string;
-  rate: Array<number>;
+  rate: number;
+  booked: number;
 }

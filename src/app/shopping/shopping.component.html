@@ -1,9 +1,10 @@
-Komentarz: to jest osobny komponent który komunikuje się z głównym za pomocą usługi. Jest tytaj żeby było widać że działa.<br>
+<app-menu></app-menu>
 <h1 style="font-size: 50px; font-weight: 700;">Your booked trips:</h1>
-<ul class="list-group">
-  <li *ngFor="let x of tripList" [hidden]="isAlready(x)" class="list-group-item d-flex justify-content-between align-items-center">
+<ul>
+  <li *ngFor="let x of tripList" class="list-group-item d-flex justify-content-between align-items-center">
     Name of trip: {{x.name}} <br>
-    Description of trip: {{x.description}}
+    Description of trip: {{x.description}} <br>
+    How many spaces you booked: {{ x.booked }}
   </li>
 </ul><br>
 Total sum of trips: {{sum}}<br>

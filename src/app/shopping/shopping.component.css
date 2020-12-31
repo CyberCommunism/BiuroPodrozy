@@ -1,0 +1,7 @@
+li{
+  font-size: 10px;
+}
+ul{
+  overflow: scroll;
+  max-height: 400px;
+}

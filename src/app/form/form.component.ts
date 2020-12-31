@@ -1,17 +1,15 @@
-import {Component, OnInit, Output, EventEmitter } from '@angular/core';
+import {Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {tripObj} from '../tripObj';
-
+import { DataServiceService } from '../data-service/data-service.service';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
-  @Output() emitter = new EventEmitter<tripObj>();
-  constructor(private formBuilder: FormBuilder) { }
   // @ts-ignore
-  modelForm: FormGroup;
+  public modelForm: FormGroup;
+  constructor(private formBuilder: FormBuilder, private data: DataServiceService) { }
   ngOnInit(): void {
     this.modelForm = this.formBuilder.group({
       nameOfTrip: new FormControl('', [Validators.max(15), Validators.required]),
@@ -26,6 +24,7 @@ export class FormComponent implements OnInit {
   addTrip(): void{
     const urlImg = 'https://source.unsplash.com/1000x900/?' + this.modelForm?.get('aimOfTrip')?.value;
     const x = {
+      key: undefined,
       name: this.modelForm?.get('nameOfTrip')?.value,
       aim: this.modelForm?.get('aimOfTrip')?.value,
       startTrip: this.modelForm?.get('dateStartOfTrip')?.value,
@@ -35,9 +34,10 @@ export class FormComponent implements OnInit {
       maxSpace: this.modelForm?.get('vacanciesOfTrip')?.value,
       description: this.modelForm?.get('descriptionOfTrip')?.value,
       imgURL: urlImg,
-      rate: []
+      rate: 0,
+      booked: 0
     };
     this.modelForm?.reset();
-    this.emitter.emit(x);
+    this.data.addTrip(x);
   }
 }

@@ -1,5 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { tripObj } from '../trip/tripObj';
+import { tripObj } from '../tripObj';
+export class FiltrePipe implements PipeTransform{
+  transform(value: any, ...args: any[]): any {
+  }
+}
 @Pipe({
   name: 'getLocate',
   pure: false,
@@ -16,10 +20,9 @@ export class SearchPipe implements PipeTransform {
   pure: false
 })
 export class SearchPrice implements PipeTransform {
-  transform(tripList: tripObj[], price: number[]): tripObj[] {
-    if (!price || price.length === 0){ return tripList; }
+  transform(tripList: tripObj[], low: number, high: number): tripObj[] {
     if (!tripList){ return []; }
-    return tripList.filter(trip => price.includes(trip.price));
+    return tripList.filter(trip => trip.price >= low && trip.price <= high);
   }
 }
 @Pipe({
@@ -44,3 +47,25 @@ export class SearchEndDate implements PipeTransform {
     return tripList.filter(trip => endDate.includes(trip.endTrip));
   }
 }
+/*
+@Pipe({
+  name: 'howManyFreeSpace',
+  pure: false
+})
+export class SearchFreeSpace implements PipeTransform {
+  transform(tripList: tripObj[], minimum: number): tripObj[]{
+    if (!tripList){ return []; }
+    return tripList.filter(trip => trip.maxSpace >= minimum);
+  }
+}
+@Pipe({
+  name: 'byRate',
+  pure: false
+})
+export class SearchByRate implements PipeTransform {
+  transform(tripList: tripObj[], minimum: number): tripObj[]{
+    if (!tripList){ return []; }
+    return tripList.filter(trip => ((trip.rate.reduce((sum, current) => sum + current, 0)) / trip.rate.length) >= minimum );
+  }
+}
+ */

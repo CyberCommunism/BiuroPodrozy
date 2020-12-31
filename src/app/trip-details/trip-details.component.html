@@ -1,0 +1,43 @@
+<app-menu></app-menu>
+<div *ngFor="let x of currTrip">
+<div class="rateDiv">
+
+  <select  style="width: 30px; background-color: #ff6666; font-size: 20px; border: none; border-radius: 10px; text-decoration: none;">
+    <option class="rateScale" value="" selected disabled hidden>Rate here</option>
+    <option class="rateScale">1</option>
+    <option class="rateScale">2</option>
+    <option class="rateScale">3</option>
+    <option class="rateScale">4</option>
+    <option class="rateScale">5</option>
+  </select>
+
+  <span style="margin: 10px;"></span>
+</div>
+<div class="generalTripInfo" style="margin-left: auto; margin-right: auto; width: 90%; margin-top: 50px;">
+  <div class="card mb-3" style="max-width: 100%;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{ x.imgURL }}" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ x.name }}</h5>
+          <p class="card-text">
+            Country:  {{ x.aim }}<br>
+            Start of trip: {{ x.startTrip }}<br>
+            End of Trip: {{ x.endTrip }}<br>
+            Trip price: {{ x.price }} {{ x.currency }}<br>
+            Free spaces: {{ x.maxSpace - x.booked }}<br>
+            Description: {{ x.description }} <br>
+            <button type="button" class="button" (click)="book()" [ngStyle]="{'display': x.booked < x.maxSpace ? 'block' : 'none' }">Book</button>
+            <button type="button" class="button1" (click)="cancel()" [ngStyle]="{'display': x.booked > 0 ? 'block' : 'none' }"  type="button" >Cancel reservations</button>
+            <button type="button" class="button1" (click)="delete()">Delete trip</button>
+          </p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+rate: number;
