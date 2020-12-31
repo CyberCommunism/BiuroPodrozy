@@ -7,8 +7,7 @@
   position: relative;
 }
 #gallery{
-  margin-left: 5%;
-  margin-right: 5%;
+  margin: 40px 5%;
   display: grid;
   grid-template-columns: repeat(4,1fr);
   grid-gap: 60px;

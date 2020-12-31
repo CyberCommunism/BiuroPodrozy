@@ -7,10 +7,10 @@ a, .button{
   color: white;
   transition-duration: 0.4s;
   background-color:  #ff6666;
-  padding: 5px;
+  padding: 8px;
   border: none;
   margin: 5px;
-  font-size: 12px;
+  font-size: 13px;
   border-radius: 2px;
   font-weight: 900;
 }
@@ -20,8 +20,9 @@ a:hover, .button:hover{
   background-color: #ff9999;
 }
 .read{
-  text-align: center;
-
+  margin-left: auto;
+  margin-right: auto;
+  height: 60px;
 }
 .imgDiv{
   position: relative;

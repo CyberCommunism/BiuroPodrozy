@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataServiceService } from '../data-service/data-service.service';
-import {map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+import { SetToPipe } from '../set-to-pipe';
 @Component({
   selector: 'app-list-of-trips',
   templateUrl: './list-of-trips.component.html',
@@ -8,12 +9,20 @@ import {map} from 'rxjs/operators';
 })
 export class ListOfTripsComponent implements OnInit {
 
-  constructor(private data: DataServiceService) {}
-
   tripsList: any;
+  // @ts-ignore
+  dataToFiltre: SetToPipe;
+  constructor(private data: DataServiceService) {}
 
   ngOnInit(): void {
     this.getTripList();
+    this.dataToFiltre = {
+      startData: '',
+      endData: '',
+      lowPrice: NaN,
+      highPrice: NaN,
+      country: ''
+    };
   }
   getTripList(): void{
     this.data.getList().pipe(
@@ -24,5 +33,8 @@ export class ListOfTripsComponent implements OnInit {
         ))
     ).subscribe(
       list => {this.tripsList = list; });
+  }
+  makeWithData(x: SetToPipe): void{
+    this.dataToFiltre = x;
   }
 }

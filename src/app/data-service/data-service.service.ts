@@ -23,7 +23,8 @@ export class DataServiceService {
       description: trip.description,
       imgURL: trip.imgURL,
       rate: trip.rate,
-      booked: trip.booked
+      booked: trip.booked,
+      rateNum: trip.rateNum
     };
     this.db.list('trips').push(trip1);
   }

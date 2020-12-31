@@ -34,6 +34,7 @@ export class FormComponent implements OnInit {
       maxSpace: this.modelForm?.get('vacanciesOfTrip')?.value,
       description: this.modelForm?.get('descriptionOfTrip')?.value,
       imgURL: urlImg,
+      rateNum: 0,
       rate: 0,
       booked: 0
     };

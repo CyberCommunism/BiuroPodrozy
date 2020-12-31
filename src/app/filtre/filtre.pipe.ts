@@ -20,52 +20,52 @@ export class SearchPipe implements PipeTransform {
   pure: false
 })
 export class SearchPrice implements PipeTransform {
-  transform(tripList: tripObj[], low: number, high: number): tripObj[] {
+  transform(tripList: any, low: number, high: number): any {
     if (!tripList){ return []; }
-    return tripList.filter(trip => trip.price >= low && trip.price <= high);
+    if (Number.isNaN(low) && Number.isNaN(high)) { return tripList; }
+    if (Number.isNaN(low) && !Number.isNaN(high)) { return tripList.filter((trip: any ) => trip.price <= high); }
+    if (!Number.isNaN(low) && Number.isNaN(high)) { return tripList.filter((trip: any ) => trip.price >= low); }
+    if (!Number.isNaN(low) && !Number.isNaN(high)) { return tripList.filter((trip: any ) => trip.price >= low && trip.price <= high); }
   }
 }
 @Pipe({
-  name: 'getStartDate',
+  name: 'getDate',
   pure: false
 })
 export class SearchStartDate implements PipeTransform {
-  transform(tripList: tripObj[], startDate: string[]): tripObj[] {
-    if (!startDate || startDate.length === 0){ return tripList; }
+  transform(tripList: any, startDate: string, endDate: string): any {
     if (!tripList){ return []; }
-    return tripList.filter(trip => startDate.includes(trip.startTrip));
+    if (startDate === '' && endDate === ''){ return tripList; }
+    if (startDate !== '' && endDate === '') {
+      if (new Date(startDate)) {
+        const d = new Date(startDate);
+        return tripList.filter((trip: any) => (new Date(trip.startTrip) >= d ));
+      }
+    }
+    if (startDate === '' && endDate !== ''){
+      if (new Date(endDate)) {
+        const d = new Date(endDate);
+        return tripList.filter((trip: any) => (new Date(trip.endTrip) <= d ));
+      }
+    }
+    if (startDate !== '' && endDate !== ''){
+      if (new Date(startDate) && new Date(endDate)) {
+        const d = new Date(startDate);
+        const d1 = new Date(endDate);
+        return tripList.filter((trip: any) => (new Date(trip.startTrip) >= d  && new Date(trip.endTrip) <= d1 ));
+      }
+    }
   }
 }
 @Pipe({
-  name: 'getEndDate',
+  name: 'getSearch',
   pure: false
 })
-export class SearchEndDate implements PipeTransform {
-  transform(tripList: tripObj[], endDate: string[]): tripObj[]{
-    if (!endDate || endDate.length === 0){ return tripList; }
+export class SearchSearch implements PipeTransform {
+  transform(tripList: any, x: string): any {
     if (!tripList){ return []; }
-    return tripList.filter(trip => endDate.includes(trip.endTrip));
+    if (x === '') { return tripList; }
+    // tslint:disable-next-line:max-line-length
+    return tripList.filter((trip: any) => ((trip.name.toLowerCase().includes(x.toLowerCase())) || trip.aim.toLowerCase().includes(x.toLowerCase())));
   }
 }
-/*
-@Pipe({
-  name: 'howManyFreeSpace',
-  pure: false
-})
-export class SearchFreeSpace implements PipeTransform {
-  transform(tripList: tripObj[], minimum: number): tripObj[]{
-    if (!tripList){ return []; }
-    return tripList.filter(trip => trip.maxSpace >= minimum);
-  }
-}
-@Pipe({
-  name: 'byRate',
-  pure: false
-})
-export class SearchByRate implements PipeTransform {
-  transform(tripList: tripObj[], minimum: number): tripObj[]{
-    if (!tripList){ return []; }
-    return tripList.filter(trip => ((trip.rate.reduce((sum, current) => sum + current, 0)) / trip.rate.length) >= minimum );
-  }
-}
- */

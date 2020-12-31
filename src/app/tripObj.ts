@@ -11,5 +11,6 @@ export interface tripObj {
   description: string;
   imgURL: string;
   rate: number;
+  rateNum: number;
   booked: number;
 }

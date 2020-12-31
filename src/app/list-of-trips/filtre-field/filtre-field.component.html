@@ -1,0 +1,36 @@
+<div id="filterField" *ngIf="flag">
+  <div class="filterEl">Select your trips:</div>
+  <div class="filterEl">
+    Start date:
+  </div>
+  <div class="filterEl1">
+    <input type="date" [(ngModel)]="startDateChosen" (ngModelChange)="emit()">
+  </div>
+  <div class="filterEl">
+    End date:
+  </div>
+  <div class="filterEl1">
+    <input type="date" [(ngModel)]="endDateChosen" (ngModelChange)="emit()">
+  </div>
+
+
+  <div class="filterEl">
+    Price:
+  </div>
+  <div class="inputSearch1">
+    <input [(ngModel)]="lowPrice" (ngModelChange)="emit()" placeholder="From">
+  </div>
+  <div class="inputSearch1">
+    <input [(ngModel)]="highPrice" placeholder="To" (ngModelChange)="emit()">
+  </div>
+
+
+  <div id="inputSearch">
+    <input [(ngModel)]="searchText" placeholder="Type country or name of trip" (ngModelChange)="emit()">
+  </div>
+</div>
+<div id="widmo" *ngIf="flag"></div>
+<div id="szukanie">
+  <button id="myBtn" (click)="doIt()">Search trip</button>
+</div>
+

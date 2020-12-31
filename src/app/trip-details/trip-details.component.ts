@@ -12,6 +12,9 @@ export class TripDetailsComponent implements OnInit {
   routeSub: string | undefined;
   currTrip: any;
   booked = 0;
+  rate = 0;
+  rateNum = 0;
+  rateChose = 'Rate here';
   constructor(private route: ActivatedRoute, private data: DataServiceService, private router: Router) { }
 
   ngOnInit(): void {
@@ -34,6 +37,8 @@ export class TripDetailsComponent implements OnInit {
           this.router.navigate(['/listOfTrips']).then(r => r);
         }
         this.booked = list[0].booked;
+        this.rate = list[0].rate;
+        this.rateNum = list[0].rateNum;
         this.currTrip = list;
       } );
     }
@@ -54,5 +59,11 @@ export class TripDetailsComponent implements OnInit {
       this.router.navigate(['/listOfTrips']).then(r => r);
     }
   }
-
+  addToRate(): void {
+    if (this.routeSub != null && this.rateChose != null) {
+      // tslint:disable-next-line:radix
+      this.data.update(this.routeSub, {rate: (this.rate + parseInt(this.rateChose))});
+      this.data.update(this.routeSub, {rateNum: (this.rateNum + 1)});
+    }
+  }
 }

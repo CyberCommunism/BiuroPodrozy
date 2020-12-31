@@ -10,13 +10,14 @@ import { TripComponent } from './trip/trip.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ShoppingComponent } from './shopping/shopping.component';
-import { SearchEndDate, SearchPipe, SearchPrice, SearchStartDate } from './filtre/filtre.pipe';
+import { SearchPipe, SearchPrice, SearchStartDate, SearchSearch } from './filtre/filtre.pipe';
 import { FormComponent } from './form/form.component';
 import { MenuComponent } from './menu/menu.component';
 import { ListOfTripsComponent } from './list-of-trips/list-of-trips.component';
 import { TripDetailsComponent } from './trip-details/trip-details.component';
 import { PageNotFoundComponentComponent } from './page-not-found-component/page-not-found-component.component';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { FiltreFieldComponent } from './list-of-trips/filtre-field/filtre-field.component';
 
 @NgModule({
     declarations: [
@@ -26,12 +27,13 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
         SearchPipe,
         SearchStartDate,
         SearchPrice,
-        SearchEndDate,
+        SearchSearch,
         FormComponent,
         MenuComponent,
         ListOfTripsComponent,
         TripDetailsComponent,
-        PageNotFoundComponentComponent
+        PageNotFoundComponentComponent,
+        FiltreFieldComponent
     ],
   imports: [
     BrowserModule,
