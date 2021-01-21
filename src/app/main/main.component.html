@@ -1,0 +1,41 @@
+<div id="fieldRight">
+  Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+  Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+  when an unknown printer took a galley of type and scrambled it to make a type
+  specimen book. It has survived not only five centuries, but also the leap into
+  electronic typesetting,
+</div>
+<div id="fieldLeft">
+
+  <a routerLink="/listOfTrips" *ngIf="user"><button>You are login, see trips</button></a>
+  <a routerLink="/main" (click)="logout()" *ngIf="user"><button>Logout</button></a>
+  <a routerLink="/listOfTrips" *ngIf="!user"><button>See without login</button></a>
+  <a routerLink="/login" *ngIf="!user"><button>Login or sign up</button></a>
+</div>
+<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="https://source.unsplash.com/1900x1080/?trip" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="https://source.unsplash.com/1900x1080/?mountains" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="https://source.unsplash.com/1900x1080/?sea" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="https://source.unsplash.com/1900x1080/?lake" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="https://source.unsplash.com/1900x1080/?castle" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </a>
+</div>

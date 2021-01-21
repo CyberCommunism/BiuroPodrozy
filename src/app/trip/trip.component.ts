@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import trips from '../../trips.json';
 import { DataServiceService } from '../data-service/data-service.service';
 import { tripObj } from '../tripObj';
+import {AuthService} from '../providers/auth.service';
+import {User} from '../User';
 @Component({
   selector: 'app-trip',
   templateUrl: './trip.component.html',
@@ -10,7 +12,11 @@ import { tripObj } from '../tripObj';
 export class TripComponent implements OnInit {
   // @ts-ignore
   @Input() someTrip: tripObj;
-  constructor(private data: DataServiceService) {}
+
+  user: User | undefined;
+  constructor(private data: DataServiceService, private af: AuthService) {
+    this.af.userData$.subscribe(user => this.user = user);
+  }
   ngOnInit(): void {}
   getCurrency(s: string): string{
     switch (s){

@@ -1,0 +1,22 @@
+<app-menu></app-menu>
+<button (click)="stan=1">Enroll trips</button>
+<button (click)="stan=2">Enroll users</button>
+<div *ngIf="stan==1" class="plane">
+  <div id="gridPlane1">
+    <ul>
+      <li *ngFor="let trip of trips" [ngStyle]="{'background-color':arch(trip)?'grey':'white'}"><app-trip-line [tripData]="trip" class="card"></app-trip-line></li>
+    </ul>
+  </div>
+  <a routerLinkActive="active" routerLink="/addNewTrip">Add new trip</a>
+</div>
+<div *ngIf="stan==2" class="plane">
+  <div id="gridPlane2">
+    <ul>
+      <li *ngFor="let user of users"><app-user-line [userData]="user" class="card"></app-user-line></li>
+    </ul>
+  </div>
+</div>
+
+
+
+

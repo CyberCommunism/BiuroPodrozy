@@ -1,0 +1,29 @@
+img{
+  width: 100vh;
+  height: 100vh;
+}
+#fieldLeft,#fieldRight{
+  position: absolute;
+  background-color: white;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 0 20px black;
+  z-index: 9999;
+}
+#fieldLeft{
+  bottom: 10%;
+  left: 5%;
+}
+#fieldRight{
+  bottom: 10%;
+  right: 5%;
+  max-width: 40%;
+}
+button{
+  background-color: #ff6666;
+  color: white;
+  border-radius: 7px;
+  padding: 10px;
+  text-decoration: none;
+  margin: 15px;
+}

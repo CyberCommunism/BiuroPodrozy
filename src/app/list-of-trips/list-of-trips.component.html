@@ -1,8 +1,10 @@
 <app-menu></app-menu>
 <app-filtre-field (newItemEvent)="makeWithData($event)"></app-filtre-field>
 <div id="gallery">
-  <div *ngFor="let trip of (tripsList | getPrice:dataToFiltre.lowPrice:dataToFiltre.highPrice | getDate:dataToFiltre.startData:dataToFiltre.endData | getSearch:dataToFiltre.country)">
-    <app-trip [someTrip]="trip" class="card"></app-trip>
+  <div *ngFor="let trip of (tripsList | getPrice:dataToFiltre.lowPrice:dataToFiltre.highPrice
+  | getDate:dataToFiltre.startData:dataToFiltre.endData | getSearch:dataToFiltre.country
+  | getCurr:curr:isVipB:isWorkerB)">
+      <app-trip [someTrip]="trip" class="card"></app-trip>
   </div>
 </div>
 

@@ -34,4 +34,5 @@ export class DataServiceService {
   remove(key: string): void{
     this.db.list('trips').remove(key).then(r => r);
   }
+  getListOfUsers(): Observable<any>{ return this.db.list('user').snapshotChanges(); }
 }

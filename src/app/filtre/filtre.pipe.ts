@@ -69,3 +69,19 @@ export class SearchSearch implements PipeTransform {
     return tripList.filter((trip: any) => ((trip.name.toLowerCase().includes(x.toLowerCase())) || trip.aim.toLowerCase().includes(x.toLowerCase())));
   }
 }
+@Pipe({
+  name: 'getCurr',
+  pure: false
+})
+export class SearchCurr implements PipeTransform {
+  transform(tripList: any, x: boolean, isVip: boolean, isW: boolean): any {
+    if (x && !isVip && !isW) {
+      return tripList.filter((trip: any) => ((new Date(trip.startTrip) > new Date() && trip.booked < trip.maxSpace)));
+    }
+    else if (x && isVip && !isW) {
+      return tripList.filter((trip: any) => ((new Date(trip.startTrip) > new Date())));
+    } else {
+      return tripList;
+    }
+  }
+}

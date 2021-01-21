@@ -1,0 +1,25 @@
+<span>
+  {{ userData.email }} |
+
+  admin: <input [(ngModel)]="toUpDate.admin" value="{{ userData.roles.admin }}">
+  <button [ngStyle]="{'background-color': flag1 ?'red':'grey'}"
+          (click)="toUpDate.admin = !toUpDate.admin; flag1=!flag1"
+          class="k">
+    change
+  </button> |
+
+
+  workers: <input [(ngModel)]="toUpDate.worker" value="{{ userData.roles.worker }}">
+  <button [ngStyle]="{'background-color': flag2 ?'red':'grey'}"
+          (click)="toUpDate.worker = !toUpDate.worker; flag2=!flag2" class="k">change</button> |
+
+  VIP: <input [(ngModel)]="toUpDate.vip" value="{{ userData.roles.vip }}">
+  <button [ngStyle]="{'background-color': flag3 ?'red':'grey'}"
+          class="k" (click)="toUpDate.vip = !toUpDate.vip;flag3=!flag3" >change</button> |
+
+  reader: <input [(ngModel)]="toUpDate.reader" value="{{ userData.roles.reader }}">
+  <button [ngStyle]="{'background-color': flag4 ?'red':'grey'}"
+          class="k" (click)="toUpDate.reader = !toUpDate.reader; flag4=!flag4" >change</button> |
+
+  <button class="k" (click)="save()">Save</button>
+</span>

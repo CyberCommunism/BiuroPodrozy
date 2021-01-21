@@ -15,9 +15,10 @@
   <hr>
   <div class="read">
     <a routerLink="/tripDetails/{{someTrip.key}}" routerLinkActive="active">Details</a>
-    <button [ngStyle]="{'display': someTrip.booked < someTrip.maxSpace ? 'block' : 'none' }" (click)="book()" type="button" class="button">Book</button>
-    <button [ngStyle]="{'display': someTrip.booked > 0 ? 'block' : 'none' }"  type="button" (click)="cancel()" class="button">Cancel reservations</button>
-    <button type="button" class="button" (click)="delete()">Delete trip</button>
+    <button [ngStyle]="{'display': someTrip.booked < someTrip.maxSpace ? 'block' : 'none' }"
+            (click)="book()" type="button" class="button" *ngIf="user">Book</button>
+    <button [ngStyle]="{'display': someTrip.booked > 0 ? 'block' : 'none' }"  type="button"
+            (click)="cancel()" class="button" *ngIf="user">Cancel reservations</button>
   </div>
 </div>
 

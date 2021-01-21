@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataServiceService } from '../data-service/data-service.service';
 import { map } from 'rxjs/operators';
+import {AuthService} from '../providers/auth.service';
+import {User} from '../User';
 
 @Component({
   selector: 'app-trip-details',
@@ -15,7 +17,14 @@ export class TripDetailsComponent implements OnInit {
   rate = 0;
   rateNum = 0;
   rateChose = 'Rate here';
-  constructor(private route: ActivatedRoute, private data: DataServiceService, private router: Router) { }
+  // @ts-ignore
+  user: User;
+  constructor(private route: ActivatedRoute,
+              private data: DataServiceService,
+              private router: Router,
+              public af: AuthService) {
+    this.af.userData$.subscribe(user => this.user = user);
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {

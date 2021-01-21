@@ -1,6 +1,10 @@
 <div id="widmo"></div>
 <div id="menu">
   <a routerLink="/listOfTrips" routerLinkActive="active">Main page</a>
-  <a routerLink="/shopping" routerLinkActive="active">Your booked trips</a>
-  <a routerLink="/addNewTrip" routerLinkActive="active">Add trip</a>
+  <a routerLink="/shopping" routerLinkActive="active" *ngIf="user && !user.roles.admin && !user.roles.worker" >Your booked trips</a>
+  <a routerLink="/adminPanel" routerLinkActive="active" *ngIf="user && user.roles.admin" >Your admin panel</a>
+  <a (click)="logout()" *ngIf="user">Log out</a>
+  <a routerLink="/login" *ngIf="!user">Log in</a>
+  <a routerLink="/singUp" *ngIf="!user">Sing up</a>
+  <span *ngIf="user">{{ user.email }}</span>
 </div>
